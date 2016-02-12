@@ -8,27 +8,31 @@
       xmlns:p="http://primefaces.org/ui">
 
     <h:head>
-
+        <link href="css/styles.css" rel="stylesheet" type="text/css"/>
+        <h:outputStylesheet name="styles.css" library="css"/>
     </h:head>
-    <h:body>
+    <h:body styleClass="main">
         <h1>Insurance test task</h1>
 
-        <h:form id="mainform">
-
-
-            <h:dataTable id="selectedDrivers" value="#{drivers.selectedDrivers}" var="seldrv">
+        <h:form  id="mainform">
+            <h:dataTable id="selectedDrivers" value="#{drivers.selectedDrivers}" 
+                         var="seldrv"
+                         rowClasses="odd,even"
+                         styleClass="drivers"
+                         
+                         columnClasses="fullname, birth">
                 <h:column>#{seldrv.fullName}</h:column>
                 <h:column>#{seldrv.dateAsString}</h:column> 
                 <h:column>#{seldrv.age}</h:column>
                 <h:column>#{seldrv.gender}</h:column>
                 <h:column>#{seldrv.category}</h:column>
                 <h:column>
-                    <p:commandButton value="EDIT">
+                    <p:commandButton styleClass="button" value="EDIT">
                         <p:ajax event="click" listener="#{drivers.doEdit(seldrv)}" update="driverForm" />                        
                     </p:commandButton>
                 </h:column>
                 <h:column>
-                    <p:commandButton value="DELETE">
+                    <p:commandButton styleClass="button button_del" value="DELETE">
                         <p:ajax event="click" listener="#{drivers.doRemove(seldrv)}" update="mainform" />    
                         <p:ajax event="click"  update="driverForm" />
                     </p:commandButton>
@@ -36,7 +40,7 @@
             </h:dataTable>
 
 
-            <p:inputText  placeholder="введите ФИО" id="somefield" binding="#{input1}" >
+            <p:inputText  placeholder="введите ФИО" autocomplete="off" id="somefield" binding="#{input1}" >
                 <p:ajax event="keyup" delay="600" listener="#{drivers.doSearch(input1.value)}" update="mainform:result" />
 
             </p:inputText>
@@ -52,7 +56,7 @@
                 </h:column>
             </h:dataTable>
         </h:form>
-        <h:form id="driverForm">
+        <h:form id="driverForm" styleClass="personForm">
             <p:outputLabel for="ferstanel" value="Имя:" /><br/>
             <p:inputText id="ferstanel" value="#{drivers.newone.firstname}"/><br/>
             <p:outputLabel for="patronimicel" value="Отчество:" /><br/>
@@ -72,7 +76,7 @@
                 <f:selectItem itemLabel="A" itemValue="A" noSelectionOption="true" />
                 <f:selectItems value="#{drivers.categories}" />
             </p:selectOneMenu><br/>
-            <p:commandButton value="Save">
+            <p:commandButton value="Save" styleClass="button">
                 <p:ajax event="click" listener="#{drivers.doSave}" process="@form" update="mainform:selectedDrivers" />                        
             </p:commandButton>
         </h:form>
