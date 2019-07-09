@@ -1,0 +1,72 @@
+/*
+ Copyright (c) 2016 Ekaterina Alexeevna Ivanova. All rights reserved.
+ PROPRIETARY. For demo purposes only, not for redistribution or any commercial 
+ use.
+ */
+/* 
+    Created on : Feb 12, 2016, 2:29:09 PM
+    Author     : Ekaterina Alexeevna Ivanova
+*/
+
+
+.main {
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.button_del{
+        color: red;
+}
+
+.button{
+	-webkit-border-radius:5px;
+        padding:4px 5px;
+        border-radius:5px;
+        font:15px sans-serif;
+        position:relative;
+        vertical-align:baseline;
+	text-decoration:none !important;    
+	white-space:nowrap;
+	display:inline-block;
+}
+
+table.drivers {
+    border-bottom:1px solid #000;
+    width: 80%;
+    margin-bottom: 10px;    
+    border-collapse: collapse; 
+}
+
+table.drivers tr.even {
+    background-color: #DFDFDF;
+}
+
+table.drivers tr.odd {
+    background-color:  #FFEEEE;
+}
+
+table.drivers td {
+    border: 2px solid #000;
+    font-family: Arial;
+    text-align: left;
+    padding: 2px;
+}
+ 
+.personForm {
+    width: 100%;
+    margin-top: 25px;
+    alignment-adjust: central;
+}
+
+.personForm input{
+    width: 40%;
+    color: #660000;
+}
+
+.personForm label{
+    margin-top: 4px;
+    margin-bottom: 2px;
+    font-family: cursive;
+}

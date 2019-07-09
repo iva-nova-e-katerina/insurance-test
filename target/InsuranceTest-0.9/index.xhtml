@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <link href="css/styles.css" rel="stylesheet" type="text/css"/>
+        <h:outputStylesheet name="styles.css" library="css"/>
+    </h:head>
+    <h:body styleClass="main">
+        <h1>Insurance test task</h1>
+
+        <h:form  id="mainform">
+            <h:dataTable id="selectedDrivers" value="#{drivers.selectedDrivers}" 
+                         var="seldrv"
+                         rowClasses="odd,even"
+                         styleClass="drivers"
+                         
+                         columnClasses="fullname, birth">
+                <h:column>#{seldrv.fullName}</h:column>
+                <h:column>#{seldrv.dateAsString}</h:column> 
+                <h:column>#{seldrv.age}</h:column>
+                <h:column>#{seldrv.gender}</h:column>
+                <h:column>#{seldrv.category}</h:column>
+                <h:column>
+                    <p:commandButton styleClass="button" value="EDIT">
+                        <p:ajax event="click" listener="#{drivers.doEdit(seldrv)}" update="driverForm" />                        
+                    </p:commandButton>
+                </h:column>
+                <h:column>
+                    <p:commandButton styleClass="button button_del" value="DELETE">
+                        <p:ajax event="click" listener="#{drivers.doRemove(seldrv)}" update="mainform" />    
+                        <p:ajax event="click"  update="driverForm" />
+                    </p:commandButton>
+                </h:column>
+            </h:dataTable>
+
+
+            <p:inputText  placeholder="введите ФИО" autocomplete="off" id="somefield" binding="#{input1}" >
+                <p:ajax event="keyup" delay="600" listener="#{drivers.doSearch(input1.value)}" update="mainform:result" />
+
+            </p:inputText>
+
+
+
+            <h:dataTable id="result" value="#{drivers.result}" var="drv" >
+                <h:column>
+                    <h:commandLink>
+                        <h:outputText value="#{drv.fullName}&nbsp;#{drv.dateAsStringExcludeNow}" />
+                        <p:ajax event="click" listener="#{drivers.doAdd(drv)}" update="mainform" />                        
+                    </h:commandLink>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+        <h:form id="driverForm" styleClass="personForm">
+            <p:outputLabel for="ferstanel" value="Имя:" /><br/>
+            <p:inputText id="ferstanel" value="#{drivers.newone.firstname}"/><br/>
+            <p:outputLabel for="patronimicel" value="Отчество:" /><br/>
+            <p:inputText id="patronimicel" value="#{drivers.newone.patronymic}" /><br/>
+            <p:outputLabel for="lastnamel" value="Фамилия:" /><br/>
+            <p:inputText id="lastnamel" value="#{drivers.newone.lastname}" />
+            <br/>
+            <p:outputLabel for="birthel" value="Дата Рождения:" /><br/>
+            <p:calendar id="birthel" value="#{drivers.newone.dateOfBirth}" /><br/> 
+            <p:outputLabel for="genderel" value="Пол:" /><br/>
+            <p:selectOneRadio id="genderel" value="#{drivers.newone.gender}">
+                <f:selectItem itemLabel="Жен." itemValue="Ж" />
+                <f:selectItem itemLabel="Муж." itemValue="М" />
+            </p:selectOneRadio><br/>
+            <p:outputLabel for="category" value="Категория водительских прав:" /><br/>
+            <p:selectOneMenu id="category" value="#{drivers.newone.category}" style="width:150px">
+                <f:selectItem itemLabel="A" itemValue="A" noSelectionOption="true" />
+                <f:selectItems value="#{drivers.categories}" />
+            </p:selectOneMenu><br/>
+            <p:commandButton value="Save" styleClass="button">
+                <p:ajax event="click" listener="#{drivers.doSave}" process="@form" update="mainform:selectedDrivers" />                        
+            </p:commandButton>
+        </h:form>
+
+
+    </h:body>
+</html>
