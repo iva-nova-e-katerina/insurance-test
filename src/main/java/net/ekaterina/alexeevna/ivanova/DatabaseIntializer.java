@@ -24,8 +24,8 @@ import net.ekaterina.alexeevna.ivanova.Driver.Gender;
 
 /**
  *
- * @author Ekaterina Alexeevna Ivanova
- * @since 10 February 2016
+ * @author Ekaterina A. Ivanova (iceja.net)
+ * date 10 February 2016
  */
 public class DatabaseIntializer implements Filter {
 

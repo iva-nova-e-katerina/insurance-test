@@ -6,8 +6,8 @@
 package net.ekaterina.alexeevna.ivanova;
 /**
  *
- * @author Ekaterina Alexeevna Ivanova
- * @since 10 February 2016
+ * @author Ekaterina A. Ivanova (iceja.net)
+ * date 10 February 2016
  */
 import java.util.Comparator;
 
